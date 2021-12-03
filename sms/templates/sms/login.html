@@ -1,0 +1,53 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="{% static 'styles/login.css' %}">
+
+</head>
+<body style="background: #373B44;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+  
+
+<style>
+  .form {
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+  input {
+    border-radius: 10px;
+  }
+
+</style>
+  
+  <div class="background" >
+
+      <div class="login-page">
+          <div class="form">
+            <div class="card" style="margin-bottom: -70px; margin-top: -80px; margin-left: -20px;" >
+              <img src="{% static 'images/logo5.svg' %}" style="width: 300px;" alt="">
+            </div>
+
+            <form class="login-form" method="post">
+              {% csrf_token %}
+              <input type="text" name='username'  placeholder="Your username" >
+              <input type="password" name='password' placeholder="Your password">
+              <button type="submit">login</button>
+            </form>
+          </div>
+        </div>
+
+  </div>
+
+</body>

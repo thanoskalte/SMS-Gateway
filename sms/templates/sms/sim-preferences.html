@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<!------------------------- some css ------------------------->
+<style>
+    .card-margin{
+        border-radius: 40px;
+    }
+
+    .simheading {
+    justify-self: center;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #012970;
+    font-family: "Open Sans", sans-serif;
+  }
+.widget-49-meeting-action{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
+
+.mybtn {
+    border-radius: 12px;
+    background-color: #2d5ca9;;
+    color: white;
+    padding: 5px 30px;
+    border-width: 0ch;
+    margin-top: 3px;
+    
+}
+
+.btndown {
+  background-color: #2d5ca9;
+}
+
+.mybtn:hover {
+    background-color: #f15a29;
+}
+
+.widget-49-meeting-points{
+    color: #2b5288;
+    font-family: "Open Sans", sans-serif;
+    font-size: large;
+
+}
+.statusbtn {
+    padding: 7px 7px;
+    border-width: 0ch;
+    border-radius: 50px;
+    margin-left: 10px;
+}
+
+
+</style>
+
+<!---------------------------- HTML ----------------------->
+<h3 class="simheading">{{sims_count}} SIM available </h3>
+<hr>
+<div class="container">
+    <div class="row">
+        {% for sim in sims %}
+        <div class="col-lg-4">
+            <div class="card card-margin">
+                <div class="card-header no-border">
+                    <h5 class="card-title"> SIM: {{forloop.counter}}</h5>
+                        <div class="card-body pt-0">
+                            <div class="widget-49">
+                                <div class="widget-49-title-wrapper">
+                                </div>
+                                <ol class="widget-49-meeting-points" style="list-style: none;">
+                                    <li class="widget-49-meeting-item"><span><strong>IMEI:</strong>  {{sim.modem.imei}}</span></li>
+                                    <li class="widget-49-meeting-item" id="pin" type="password" name="password"><span><strong>PIN:</strong> **********</span></li>
+                                    <li class="widget-49-meeting-item"><span><strong>Phone:</strong>  {{sim.phone}}</span></li>
+                                    <!-- should add type local or gateway -->
+                                    <li class="widget-49-meeting-item"><span><strong>Type:</strong>  Local</span></li>
+
+                                    <li class="widget-49-meeting-item" style="justify-content: baseline;"><span ><strong>Status:</strong>{% if sim.status == 'a' %} <strong style="color: rgb(12, 170, 12);">Active</strong> {% endif %} </span></li>
+                                </ol>
+                                <div class="widget-49-meeting-action">
+                                    <a href="#" class="btn btn-sm btn-flash-border-success" id=''> <button class="mybtn btnupper" >Clear PIN</button></a>
+                                </div>
+                                <div class="widget-49-meeting-action">
+                                    <a href="#" class="btn btn-sm btn-flash-border-success" id=''> <button class="mybtn btndown" >Reset PIN</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

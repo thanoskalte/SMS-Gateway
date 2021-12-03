@@ -1,0 +1,217 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<style>
+body {
+	 background-color: white;
+}
+ body * {
+	 box-sizing: border-box;
+}
+ .tableheader {
+	 background-color: rgb(255, 255, 255);
+     /* ------ */
+
+     /* ----- */
+	 color:#2d5ca9;
+	 font-size: 1.5em;
+     font-weight: 700;
+	 padding: 1rem;
+	 text-align: center;
+	 text-transform: uppercase;
+}
+ img {
+	 border-radius: 50%;
+	 height: 60px;
+	 width: 60px;
+}
+ .table-users {
+     /* border of table */
+	 border: 1px solid rgb(255, 255, 255);
+	 border-radius: 10px;
+	 box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+	 max-width: calc(100% - 2em);
+	 margin: 1em auto;
+	 overflow: hidden;
+	 width: 1200px;
+}
+ table {
+	 width: 100%;
+}
+
+
+ table td, table th {
+     /* text color */
+	 color: #757575;
+	 padding: 10px;
+}
+ table td {
+	 text-align: center;
+	 vertical-align: middle;
+}
+ table td:last-child {
+	 font-size: 0.95em;
+	 line-height: 1.4;
+	 text-align: left;
+}
+ table th {
+     /* second column */
+	 background-color: #2d5ca9;
+	 font-weight: 1100;
+     font-size: large;
+     text-align: center;
+     color: white;
+     
+}
+
+/* hover color */
+table.mytable tr:hover td {
+background-color: rgb(243, 227, 198);
+}
+
+ table tr:nth-child(2n) {
+	 background-color: white;
+     
+}
+ table tr:nth-child(2n+1) {
+     /* mid cel color */
+	 background-color: #f5f6ff;
+}
+ @media screen and (max-width: 700px) {
+	 table, tr, td {
+		 display: block;
+	}
+	 td:first-child {
+		 position: absolute;
+		 top: 50%;
+		 transform: translateY(-50%);
+		 width: 100px;
+	}
+	 td:not(:first-child) {
+		 clear: both;
+		 margin-left: 100px;
+		 padding: 4px 20px 4px 90px;
+		 position: relative;
+		 text-align: left;
+	}
+	 td:not(:first-child):before {
+         /* color of titles when tablet */
+         /* should be the same with basic color */
+		 color: #757575;
+         font-weight: 800;
+		 content: '';
+		 display: block;
+		 left: 0;
+		 position: absolute;
+	}
+	 td:nth-child(2):before {
+		 content: 'Message:';
+	}
+	 td:nth-child(3):before {
+		 content: 'To:';
+	}
+	 td:nth-child(4):before {
+		 content: 'Status:';
+	}
+	 td:nth-child(5):before {
+		 content: 'Action:';
+	}
+	 tr {
+		 padding: 10px 0;
+		 position: relative;
+	}
+	 tr:first-child {
+		 display: none;
+	}
+}
+ @media screen and (max-width: 500px) {
+	 .header {
+		 background-color: white;
+		 color: #fff;
+		 font-size: 2em;
+		 font-weight: 700;
+		 padding: 0;
+		 text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+         
+	}
+	 img {
+		 
+		 height: 100px;
+		 margin: 0.5rem 0;
+		 width: 100px;
+	}
+	 td:first-child {
+         /* color of mobile header */
+		 background-color: #aec8fd;
+		 border-bottom: 1px solid #f7fafa;
+		 border-radius: 10px 10px 0 0;
+		 position: relative;
+		 top: 0;
+		 transform: translateY(0);
+		 width: 100%;
+         min-width: 350px;
+	}
+	 td:not(:first-child) {
+		 margin: 0;
+		 padding: 5px 1em;
+		 width: 100%;
+	}
+	 td:not(:first-child):before {
+		 font-size: 0.8em;
+		 padding-top: 0.3em;
+		 position: relative;
+	}
+	 td:last-child {
+		 padding-bottom: 1rem !important;
+	}
+	 tr {
+		 background-color: white !important;
+         /* color of border */
+		 border: 1px solid #ffffff;
+		 border-radius: 10px;
+		 box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+		 margin: 0.5rem 0;
+		 padding: 0;
+	}
+	 .table-users {
+		 border: none;
+		 box-shadow: none;
+		 overflow: visible;
+	}
+
+    
+}
+
+
+</style>
+
+<div class="table-users">
+    <div class="tableheader">
+        Send Messages
+    </div>
+    
+    <table class="mytable" cellspacing="0">
+       <tr>
+          <th><i class="bi bi-calendar3"></i></th>
+          <th width="330"><i class="bi bi-chat-left-text"></i></th>
+          <th ><i class="bi bi-telephone"></i></th>
+        
+          <th><i class="bi bi-card-checklist"></i></th>
+          
+       </tr>
+       
+    {% for message in messages %}
+       <tr id = 'mydynamictable'>
+          <td style="text-align: center;">{{message.date_created}}</td>
+          <td style="text-align: center;">{{message.text}} </td>
+          <td style="text-align: center;">{{message.receiver_phone}}</td>
+          
+          
+          <td style="text-align: center;">{% if message.status == 'p' %} <i style="color: rgb(250, 205, 121);" class="bi bi-hourglass-split"></i>  {% else %} <i style="color: rgb(6, 189, 6);" class="bi bi-check-circle"></i> {% endif %}</td>
+          
+       </tr>
+       {% endfor %}
+    </table>
+ </div>
+{% endblock %}
